@@ -23,12 +23,17 @@ const corsOptions = {
       'https://frontend-vercel-zbmt.onrender.com',
       'https://internnext-frontend.onrender.com',
       'https://frontend-vercel-zbmt.onrender.com/',
-      'https://internnext-frontend.onrender.com/'
+      'https://internnext-frontend.onrender.com/',
+      'https://profile-management-deploy.vercel.app',
+      'https://profile-management-deploy.vercel.app/'
     ].filter(Boolean); // Remove undefined values
     
-    console.log('CORS check - Origin:', origin, 'Allowed origins:', allowedOrigins);
+    // Allow all Vercel domains
+    const isVercelDomain = origin.includes('.vercel.app') || origin.includes('vercel.app');
     
-    if (allowedOrigins.includes(origin)) {
+    console.log('CORS check - Origin:', origin, 'Allowed origins:', allowedOrigins, 'Is Vercel:', isVercelDomain);
+    
+    if (allowedOrigins.includes(origin) || isVercelDomain) {
       callback(null, true);
     } else {
       console.log('CORS blocked origin:', origin);
