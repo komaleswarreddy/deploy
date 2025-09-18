@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import type { RootState, AppDispatch } from '../store';
+import type { RootStateTyped, AppDispatch } from '../store';
 import { setProfile, clearProfile } from '../features/profile/profileSlice';
 import type { Profile } from '../types/profile';
 
@@ -8,7 +8,7 @@ const PROFILE_STORAGE_KEY = 'profile-management-profile';
 
 export const useLocalSync = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { profile, status } = useSelector((state: RootState) => state.profile);
+  const { profile, status } = useSelector((state: RootStateTyped) => state.profile);
 
   // Load profile from localStorage on app start
   useEffect(() => {

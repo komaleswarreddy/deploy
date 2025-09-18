@@ -9,11 +9,11 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import type { RootState } from '../store';
+import type { RootStateTyped } from '../store';
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
-  const { profile } = useSelector((state: RootState) => state.profile);
+  const { profile } = useSelector((state: RootStateTyped) => state.profile);
 
   const handleLogoClick = () => {
     navigate('/');

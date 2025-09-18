@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Container, Box, Snackbar, Alert } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import type { AppDispatch, RootState } from '../store';
+import type { AppDispatch, RootStateTyped } from '../store';
 import { createOrUpdateProfile, clearError } from '../features/profile/profileSlice';
 import type { CreateProfileData } from '../types/profile';
 import ProfileFormCard from '../components/ProfileFormCard';
@@ -11,7 +11,7 @@ const ProfileForm: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch<AppDispatch>();
-  const { profile, status, error } = useSelector((state: RootState) => state.profile);
+  const { profile, status, error } = useSelector((state: RootStateTyped) => state.profile);
   const formSubmittedRef = useRef(false);
 
   // Get initial data from location state (for editing)
@@ -62,7 +62,7 @@ const ProfileForm: React.FC = () => {
           initialData={initialData}
           onSubmit={handleSubmit}
           onCancel={handleCancel}
-          isLoading={status === 'loading'}
+          isLoading={(status as 'idle' | 'loading' | 'succeeded' | 'failed') === 'loading'}
           error={error}
         />
       </Box>
