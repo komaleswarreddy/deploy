@@ -9,17 +9,18 @@
       }
     },
     {
-      "src": "backend/package.json",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["backend/dist/**"]
-      }
+      "src": "api/**/*.ts",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
+      "src": "/api/profile/(.*)",
+      "dest": "/api/profile/index.ts"
+    },
+    {
       "src": "/api/(.*)",
-      "dest": "backend/dist/index.js"
+      "dest": "/api/index.ts"
     },
     {
       "src": "/(.*)",
