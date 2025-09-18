@@ -14,7 +14,7 @@ services:
       - key: MONGODB_URI
         sync: false  # You'll set this manually
       - key: CORS_ORIGIN
-        value: https://internnext-frontend.onrender.com  # Update with your frontend URL
+        value: https://frontend-vercel-zbmt.onrender.com  # Your actual frontend URL
 
   # Frontend Service
   - type: web
