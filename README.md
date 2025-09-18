@@ -213,25 +213,61 @@ npm test
 
 ## Deployment
 
-### Vercel Deployment (Frontend)
+### Vercel Full-Stack Deployment (Recommended)
 
-1. Connect your GitHub repository to Vercel
-2. Set environment variables in Vercel dashboard:
-   - `REACT_APP_API_BASE_URL`: Your backend API URL
-3. Deploy automatically on push to main branch
+This project is configured for full-stack deployment on Vercel with both frontend and backend.
 
-### Backend Deployment
+#### Quick Deploy
 
-#### Option 1: Vercel Serverless Functions
-- Deploy as Vercel serverless functions
-- Add `vercel.json` configuration
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/profile-management)
 
-#### Option 2: Render/Heroku
-- Deploy Express app to Render or Heroku
-- Set environment variables:
-  - `MONGODB_URI`: Your MongoDB connection string
-  - `NODE_ENV`: production
-  - `CORS_ORIGIN`: Your frontend URL
+#### Manual Deployment
+
+1. **Push to GitHub**
+   ```bash
+   git add .
+   git commit -m "Initial commit"
+   git push origin main
+   ```
+
+2. **Connect to Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Click "New Project" and import your repository
+   - Vercel will auto-detect the configuration
+
+3. **Set Environment Variables**
+   - `MONGODB_URI`: Your MongoDB Atlas connection string
+   - `NODE_ENV`: production
+   - `CORS_ORIGIN`: Your Vercel app URL
+
+4. **Deploy**
+   - Click "Deploy" and wait for completion
+
+#### Environment Variables Required
+
+**Backend (in Vercel Dashboard):**
+```
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/profile-management
+NODE_ENV=production
+CORS_ORIGIN=https://your-app.vercel.app
+```
+
+**Frontend (optional - auto-configured):**
+```
+VITE_API_BASE_URL=/api
+NODE_ENV=production
+```
+
+### Alternative Deployments
+
+#### Frontend Only (Vercel) + Backend (Render/Heroku)
+- Deploy frontend to Vercel
+- Deploy backend to Render or Heroku
+- Update `VITE_API_BASE_URL` to your backend URL
+
+#### Full-Stack (Render)
+- Deploy entire project to Render
+- Update `vercel.json` configuration
 
 ## Contributing
 
