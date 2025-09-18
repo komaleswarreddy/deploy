@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { validationResult, ValidationChain } from 'express-validator';
 
 export const validateRequest = (validations: ValidationChain[]) => {
-  return async (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     // Run all validations
     await Promise.all(validations.map(validation => validation.run(req)));
 
@@ -14,11 +14,12 @@ export const validateRequest = (validations: ValidationChain[]) => {
         value: error.type === 'field' ? error.value : undefined
       }));
 
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         message: 'Validation failed',
         errors: formattedErrors
       });
+      return;
     }
 
     next();

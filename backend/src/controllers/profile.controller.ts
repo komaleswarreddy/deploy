@@ -40,10 +40,11 @@ export const getProfile = asyncHandler(async (req: Request, res: Response) => {
   const profile = await ProfileService.getProfile();
 
   if (!profile) {
-    return res.status(404).json({
+    res.status(404).json({
       success: false,
       message: 'Profile not found'
     });
+    return;
   }
 
   res.status(200).json({
@@ -101,10 +102,11 @@ export const deleteProfile = asyncHandler(async (req: Request, res: Response) =>
   const deleted = await ProfileService.deleteProfile();
 
   if (!deleted) {
-    return res.status(404).json({
+    res.status(404).json({
       success: false,
       message: 'Profile not found'
     });
+    return;
   }
 
   res.status(200).json({

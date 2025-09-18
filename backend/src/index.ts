@@ -36,7 +36,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // Use the Express app to handle the request
   return new Promise((resolve, reject) => {
-    app(req, res, (err: any) => {
+    app(req as any, res as any, (err: any) => {
       if (err) {
         console.error('API Error:', err);
         res.status(500).json({ error: 'Internal Server Error' });

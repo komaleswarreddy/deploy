@@ -47,8 +47,8 @@ const profileSchema = new Schema<IProfile>(
     toJSON: {
       transform: function(doc, ret) {
         ret.id = ret._id;
-        delete ret._id;
-        delete ret.__v;
+        delete (ret as any)._id;
+        delete (ret as any).__v;
         return ret;
       }
     }
@@ -63,7 +63,7 @@ profileSchema.pre('save', async function(next) {
   // Only check for duplicates on new documents or when email is being modified
   if (this.isNew || this.isModified('email')) {
     const existingProfile = await Profile.findOne({ email: this.email });
-    if (existingProfile && existingProfile._id.toString() !== this._id.toString()) {
+    if (existingProfile && (existingProfile._id as any).toString() !== (this._id as any).toString()) {
       const error = new Error('A profile with this email already exists');
       return next(error);
     }
