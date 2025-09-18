@@ -1,4 +1,4 @@
-# Profile Management Application
+Profile Management Application
 
 A full-stack profile management application built with React, TypeScript, Material-UI, Redux Toolkit, Node.js, Express, and MongoDB.
 
