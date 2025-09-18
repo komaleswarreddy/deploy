@@ -24,14 +24,14 @@ import {
   Person as PersonIcon,
 } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
-import type { AppDispatch, RootState } from '../store';
+import type { AppDispatch, RootStateTyped } from '../store';
 import { fetchProfile, deleteProfile, clearError } from '../features/profile/profileSlice';
 import type { CreateProfileData } from '../types/profile';
 
 const ProfileView: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { profile, status, error } = useSelector((state: RootState) => state.profile);
+  const { profile, status, error } = useSelector((state: RootStateTyped) => state.profile);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
@@ -91,7 +91,7 @@ const ProfileView: React.FC = () => {
     setSnackbarOpen(false);
   };
 
-  if (status === 'loading') {
+  if ((status as 'idle' | 'loading' | 'succeeded' | 'failed') === 'loading') {
     return (
       <Container maxWidth="sm">
         <Box
@@ -127,7 +127,7 @@ const ProfileView: React.FC = () => {
           <Button
             variant="contained"
             onClick={() => navigate('/profile-form')}
-            disabled={status === 'loading'}
+            disabled={(status as 'idle' | 'loading' | 'succeeded' | 'failed') === 'loading'}
             sx={{ mt: 2 }}
           >
             Create Profile
@@ -248,7 +248,7 @@ const ProfileView: React.FC = () => {
               variant="contained"
               startIcon={<EditIcon />}
               onClick={handleEdit}
-              disabled={status === 'loading'}
+              disabled={(status as 'idle' | 'loading' | 'succeeded' | 'failed') === 'loading'}
             >
               Edit Profile
             </Button>
@@ -257,7 +257,7 @@ const ProfileView: React.FC = () => {
               color="error"
               startIcon={<DeleteIcon />}
               onClick={handleDelete}
-              disabled={status === 'loading'}
+              disabled={(status as 'idle' | 'loading' | 'succeeded' | 'failed') === 'loading'}
             >
               Delete Profile
             </Button>
@@ -282,17 +282,17 @@ const ProfileView: React.FC = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDeleteCancel} disabled={status === 'loading'}>
+          <Button onClick={handleDeleteCancel} disabled={(status as 'idle' | 'loading' | 'succeeded' | 'failed') === 'loading'}>
             Cancel
           </Button>
           <Button
             onClick={handleDeleteConfirm}
             color="error"
             variant="contained"
-            disabled={status === 'loading'}
-            startIcon={status === 'loading' ? <CircularProgress size={20} /> : <DeleteIcon />}
+            disabled={(status as 'idle' | 'loading' | 'succeeded' | 'failed') === 'loading'}
+            startIcon={(status as 'idle' | 'loading' | 'succeeded' | 'failed') === 'loading' ? <CircularProgress size={20} /> : <DeleteIcon />}
           >
-            {status === 'loading' ? 'Deleting...' : 'Delete'}
+            {(status as 'idle' | 'loading' | 'succeeded' | 'failed') === 'loading' ? 'Deleting...' : 'Delete'}
           </Button>
         </DialogActions>
       </Dialog>

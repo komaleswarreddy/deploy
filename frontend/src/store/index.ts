@@ -15,3 +15,12 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+// Explicitly type the profile state
+export interface RootStateTyped {
+  profile: {
+    profile: any;
+    status: 'idle' | 'loading' | 'succeeded' | 'failed';
+    error: string | null;
+  };
+}
