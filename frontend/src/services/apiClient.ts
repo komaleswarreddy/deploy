@@ -13,6 +13,14 @@ class ApiClient {
   ): Promise<T> {
     const url = `${this.baseURL}${endpoint}`;
     
+    // Debug logging
+    console.log('API Request:', {
+      baseURL: this.baseURL,
+      endpoint,
+      fullURL: url,
+      method: options.method || 'GET'
+    });
+    
     const config: RequestInit = {
       headers: {
         'Content-Type': 'application/json',

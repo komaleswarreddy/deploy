@@ -21,8 +21,12 @@ const corsOptions = {
       'http://localhost:5173',
       'http://localhost:3000',
       'https://frontend-vercel-zbmt.onrender.com',
-      'https://internnext-frontend.onrender.com'
+      'https://internnext-frontend.onrender.com',
+      'https://frontend-vercel-zbmt.onrender.com/',
+      'https://internnext-frontend.onrender.com/'
     ].filter(Boolean); // Remove undefined values
+    
+    console.log('CORS check - Origin:', origin, 'Allowed origins:', allowedOrigins);
     
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
@@ -65,6 +69,16 @@ app.get('/api', (req, res) => {
 
 // API routes
 app.use('/api/profile', profileRoutes);
+
+// Debug middleware to log all requests
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`, {
+    origin: req.headers.origin,
+    userAgent: req.headers['user-agent'],
+    contentType: req.headers['content-type']
+  });
+  next();
+});
 
 // 404 handler
 app.use(notFound);

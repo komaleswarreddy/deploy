@@ -26,8 +26,8 @@ const profileSchema = z.object({
     .max(255, 'Email must be less than 255 characters'),
   age: z
     .number()
-    .min(0, 'Age must be a positive number')
-    .max(150, 'Age must be less than 150')
+    .min(13, 'Age must be at least 13')
+    .max(120, 'Age must be less than 120')
     .optional()
     .or(z.literal('')),
 });
@@ -138,9 +138,9 @@ const ProfileFormCard: React.FC<ProfileFormCardProps> = ({
                 label="Age (Optional)"
                 placeholder="Enter your age"
                 type="number"
-                inputProps={{ min: 0, max: 150 }}
+                inputProps={{ min: 13, max: 120 }}
                 error={!!errors.age}
-                helperText={errors.age?.message || 'Age is optional'}
+                helperText={errors.age?.message || 'Age is optional (13-120)'}
                 disabled={isLoading}
                 sx={{ mb: 2 }}
                 value={field.value || ''}

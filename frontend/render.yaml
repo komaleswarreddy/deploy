@@ -7,4 +7,4 @@ services:
     staticPublishPath: dist
     envVars:
       - key: VITE_API_BASE_URL
-        value: https://internnext-backend.onrender.com/api  # Update with your backend URL
+        value: https://deploy-backend-35zt.onrender.com/api  # Your actual backend URL

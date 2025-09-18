@@ -24,8 +24,8 @@ export const validateProfile = [
 
   body('age')
     .optional()
-    .isInt({ min: 0, max: 150 })
-    .withMessage('Age must be a positive integer between 0 and 150')
+    .isInt({ min: 13, max: 120 })
+    .withMessage('Age must be an integer between 13 and 120')
     .toInt()
 ];
 
@@ -51,7 +51,7 @@ export const validateUpdateProfile = [
 
   body('age')
     .optional()
-    .isInt({ min: 0, max: 150 })
-    .withMessage('Age must be a positive integer between 0 and 150')
+    .isInt({ min: 13, max: 120 })
+    .withMessage('Age must be an integer between 13 and 120')
     .toInt()
 ];

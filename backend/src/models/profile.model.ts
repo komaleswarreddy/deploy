@@ -38,8 +38,8 @@ const profileSchema = new Schema<IProfile>(
     age: {
       type: Number,
       required: false,
-      min: [0, 'Age must be a positive number'],
-      max: [150, 'Age cannot exceed 150']
+      min: [13, 'Age must be at least 13'],
+      max: [120, 'Age cannot exceed 120']
     }
   },
   {
