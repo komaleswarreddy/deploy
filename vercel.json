@@ -6,9 +6,6 @@
       "use": "@vercel/static-build",
       "config": {
         "distDir": "frontend/dist"
-      },
-      "env": {
-        "VITE_API_BASE_URL": "/api"
       }
     },
     {
