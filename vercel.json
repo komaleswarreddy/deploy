@@ -9,25 +9,23 @@
       }
     },
     {
-      "src": "api/**/*.ts",
+      "src": "backend/src/index.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/profile/(.*)",
-      "dest": "/api/profile/index.ts"
-    },
-    {
       "src": "/api/(.*)",
-      "dest": "/api/index.ts"
+      "dest": "/backend/src/index.ts"
     },
     {
       "src": "/(.*)",
-      "dest": "frontend/dist/$1"
+      "dest": "/frontend/dist/$1"
     }
   ],
-  "env": {
-    "NODE_ENV": "production"
+  "functions": {
+    "backend/src/index.ts": {
+      "maxDuration": 30
+    }
   }
 }
