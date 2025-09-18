@@ -37,11 +37,4 @@ export interface ProfileState {
   error: string | null;
 }
 
-// Re-export all types to ensure they're available
-export type { 
-  Profile, 
-  CreateProfileData, 
-  UpdateProfileData, 
-  ApiResponse, 
-  ProfileState 
-};
+// Types are already exported above, no need to re-export
