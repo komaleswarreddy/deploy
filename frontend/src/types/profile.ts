@@ -37,4 +37,3 @@ export interface ProfileState {
   error: string | null;
 }
 
-// Types are already exported above, no need to re-export
