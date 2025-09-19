@@ -9,7 +9,6 @@ const __dirname = path.dirname(__filename);
 // Files to copy for SPA routing support
 const filesToCopy = [
   { from: 'public/_redirects', to: 'dist/_redirects' },
-  { from: 'public/404.html', to: 'dist/404.html' },
   { from: 'vercel.json', to: 'dist/vercel.json' },
   { from: 'netlify.toml', to: 'dist/netlify.toml' },
   { from: 'render.yaml', to: 'dist/render.yaml' }
