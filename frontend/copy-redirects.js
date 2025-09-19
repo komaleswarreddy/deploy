@@ -12,6 +12,7 @@ const filesToCopy = [
   { from: 'public/.htaccess', to: 'dist/.htaccess' },
   { from: 'public/web.config', to: 'dist/web.config' },
   { from: 'public/nginx.conf', to: 'dist/nginx.conf' },
+  { from: 'public/redirect.html', to: 'dist/redirect.html' },
   { from: 'vercel.json', to: 'dist/vercel.json' },
   { from: 'netlify.toml', to: 'dist/netlify.toml' },
   { from: 'render.yaml', to: 'dist/render.yaml' }
