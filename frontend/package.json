@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm ci && vite build",
+    "build": "npm ci && vite build && node copy-redirects.js",
     "vercel-build": "npm run build",
-    "render-build": "rm -rf node_modules package-lock.json && npm install && vite build",
+    "render-build": "rm -rf node_modules package-lock.json && npm install && vite build && node copy-redirects.js",
     "start": "node server.js",
+    "test-server": "node test-server.js",
     "lint": "eslint .",
     "preview": "vite preview",
     "type-check": "tsc --noEmit"

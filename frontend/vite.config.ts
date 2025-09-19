@@ -8,7 +8,16 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
-    minify: true
+    minify: true,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
   },
-  base: './'
+  base: '/',
+  server: {
+    port: 3000,
+    host: true
+  }
 })
