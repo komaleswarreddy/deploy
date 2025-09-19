@@ -1,10 +1,10 @@
 services:
   - type: web
     name: internnext-frontend
-    env: node
-    plan: free
-    buildCommand: npm run render-build
-    startCommand: npm start
-    envVars:
-      - key: VITE_API_BASE_URL
-        value: https://deploy-backend-35zt.onrender.com/api  # Your actual backend URL
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

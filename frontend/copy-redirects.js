@@ -6,9 +6,14 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Copy _redirects file from public to dist
-const sourceFile = path.join(__dirname, 'public', '_redirects');
-const destFile = path.join(__dirname, 'dist', '_redirects');
+// Files to copy for SPA routing support
+const filesToCopy = [
+  { from: 'public/_redirects', to: 'dist/_redirects' },
+  { from: 'public/404.html', to: 'dist/404.html' },
+  { from: 'vercel.json', to: 'dist/vercel.json' },
+  { from: 'netlify.toml', to: 'dist/netlify.toml' },
+  { from: 'render.yaml', to: 'dist/render.yaml' }
+];
 
 try {
   // Ensure dist directory exists
@@ -16,10 +21,21 @@ try {
     fs.mkdirSync(path.join(__dirname, 'dist'), { recursive: true });
   }
   
-  // Copy the file
-  fs.copyFileSync(sourceFile, destFile);
-  console.log('✅ _redirects file copied successfully');
+  // Copy all configuration files
+  for (const file of filesToCopy) {
+    const sourceFile = path.join(__dirname, file.from);
+    const destFile = path.join(__dirname, file.to);
+    
+    if (fs.existsSync(sourceFile)) {
+      fs.copyFileSync(sourceFile, destFile);
+      console.log(`✅ ${file.from} copied to ${file.to}`);
+    } else {
+      console.log(`⚠️  ${file.from} not found, skipping`);
+    }
+  }
+  
+  console.log('✅ All SPA routing configuration files copied successfully');
 } catch (error) {
-  console.error('❌ Error copying _redirects file:', error.message);
+  console.error('❌ Error copying configuration files:', error.message);
   process.exit(1);
 }
