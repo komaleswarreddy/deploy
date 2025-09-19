@@ -1,1 +1,6 @@
-/*    /index.html   200!
+# SPA Routing - Force all routes to index.html
+/*    /index.html   200
+
+# Fallback for any missed routes
+/api/*    /index.html   200
+/assets/*    /index.html   200

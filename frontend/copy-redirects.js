@@ -6,9 +6,12 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Files to copy for SPA routing support
+// Files to copy for SPA routing support - ALL POSSIBLE CONFIGURATIONS
 const filesToCopy = [
   { from: 'public/_redirects', to: 'dist/_redirects' },
+  { from: 'public/.htaccess', to: 'dist/.htaccess' },
+  { from: 'public/web.config', to: 'dist/web.config' },
+  { from: 'public/nginx.conf', to: 'dist/nginx.conf' },
   { from: 'vercel.json', to: 'dist/vercel.json' },
   { from: 'netlify.toml', to: 'dist/netlify.toml' },
   { from: 'render.yaml', to: 'dist/render.yaml' }
